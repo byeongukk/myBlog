@@ -1,8 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSession"/>
+	</bean>
+	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+		<property name="dataSource" ref="dataSource"/>		
+	</bean>	
+	
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="PORTFOLIO"/>
+		<property name="password" value="PORTFOLIO"/>
+		<property name="defaultAutoCommit" value="false"/>
+	</bean>
+	
+	
+	<!-- 트랜젝션매니져 bean -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>		
+	</bean>
+	
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="select*" read-only="true" rollback-for="Exception"/>
+			<tx:method name="insert*" rollback-for="Exception"
+			                        propagation="REQUIRED" isolation="SERIALIZABLE"/>
+			<tx:method name="update*" rollback-for="Exception"
+			                        propagation="REQUIRED" isolation="SERIALIZABLE"/>
+			<tx:method name="delete*" rollback-for="Exception"
+			                        propagation="REQUIRED" isolation="SERIALIZABLE"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	
+	<!-- AOP를 이용하여 위의 txAdive를 적용시키기 위해 advice객체가 weaving될 시점을 정해준다. -->
+	<!-- pointcut을 등록해야 한다. -->
+	<aop:config proxy-target-class="true">
+		<!-- pointcut 과 advice를 매칭시킴 -->
+		<aop:pointcut id="serviceMethod"
+		                expression="execution(* com.home.myblog..*ServiceImpl.*(..))"/>
+		<aop:advisor id="transactionAdvice" pointcut-ref="serviceMethod"
+		                        advice-ref="txAdvice"/>
+	</aop:config>
 </beans>
