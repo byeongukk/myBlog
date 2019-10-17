@@ -16,13 +16,13 @@
 			<h2 class="card-title text-center" style="color: #113366;">로그인 폼</h2>
 		</div>
 		<div class="card-body">
-			<form class="form-signin" method="POST" onSubmit="#">
+			<form class="form-signin" method="POST" action="login.me">
 				<h5 class="form-signin-heading">로그인 정보를 입력하세요</h5>
 				<label for="inputEmail" class="sr-only">ID</label> 
-				<input type="text" id="mid" class="form-control" placeholder="Your ID"
+				<input type="text" id="mId" name="mId" class="form-control" placeholder="Your ID"
 					   required autofocus><BR> 
 				<label for="inputPassword" class="sr-only">Password</label> 
-				<input type="password" id="mpw" class="form-control" placeholder="Password" required>
+				<input type="password" id="mPwd" name="mPwd" class="form-control" placeholder="Password" required>
 				<div align="right">
 					<a href="#">ID/PW 찾기</a>
 				</div>
@@ -30,7 +30,7 @@
 				<button id="btn-Yes" class="btn btn-primary btn-block" type="submit">로그인</button>
 				<br>
 				<div align="center">
-					<a href="#">회원가입</a><br>
+					<a href="showJoinForm.me">회원가입</a><br>
 				</div>
 			</form>
 

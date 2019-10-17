@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="Member">
+  	<resultMap type="com.home.myblog.member.model.vo.Member" id="memberResultSet">
+  		<id property="mNo" column="MNO"/>
+  		<result property="mId" column="MID"/>
+  		<result property="mPwd" column="MPWD"/>
+  		<result property="email" column="EMAIL"/>
+  		<result property="mStatus" column="M_STATUS"/>
+  		<result property="joinDate" column="JOIN_DATE"/>
+  	</resultMap>
+
+  
+  <select id="loginCheck" resultMap="memberResultSet" parameterType="Member">
+	SELECT *
+		FROM MEMBER
+	WHERE MID = #{mId}
+	AND MPWD = #{mPwd}
+	AND M_STATUS = 'Y'
+  </select>
+</mapper>

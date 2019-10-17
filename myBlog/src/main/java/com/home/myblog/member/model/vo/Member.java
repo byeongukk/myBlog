@@ -1,36 +1,33 @@
 package com.home.myblog.member.model.vo;
 
-public class Member {
+import java.sql.Date;
 
-	private String mNo;
+public class Member implements java.io.Serializable{
+
+	private int mNo;
 	private String mId;
 	private String mPwd;
 	private String email;
-	private String emailCheck;
 	private String mStatus;
-	private String nickName;
-	private String joinDate;
+	private Date joinDate;
 	
 	public Member() {}
 
-	public Member(String mNo, String mId, String mPwd, String email, String emailCheck, String mStatus, String nickName,
-			String joinDate) {
+	public Member(int mNo, String mId, String mPwd, String email, String mStatus, Date joinDate) {
 		super();
 		this.mNo = mNo;
 		this.mId = mId;
 		this.mPwd = mPwd;
 		this.email = email;
-		this.emailCheck = emailCheck;
 		this.mStatus = mStatus;
-		this.nickName = nickName;
 		this.joinDate = joinDate;
 	}
 
-	public String getmNo() {
+	public int getmNo() {
 		return mNo;
 	}
 
-	public void setmNo(String mNo) {
+	public void setmNo(int mNo) {
 		this.mNo = mNo;
 	}
 
@@ -58,14 +55,6 @@ public class Member {
 		this.email = email;
 	}
 
-	public String getEmailCheck() {
-		return emailCheck;
-	}
-
-	public void setEmailCheck(String emailCheck) {
-		this.emailCheck = emailCheck;
-	}
-
 	public String getmStatus() {
 		return mStatus;
 	}
@@ -74,27 +63,22 @@ public class Member {
 		this.mStatus = mStatus;
 	}
 
-	public String getNickName() {
-		return nickName;
-	}
-
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
-
-	public String getJoinDate() {
+	public Date getJoinDate() {
 		return joinDate;
 	}
 
-	public void setJoinDate(String joinDate) {
+	public void setJoinDate(Date joinDate) {
 		this.joinDate = joinDate;
 	}
 
 	@Override
 	public String toString() {
-		return "Member [mNo=" + mNo + ", mId=" + mId + ", mPwd=" + mPwd + ", email=" + email + ", emailCheck="
-				+ emailCheck + ", mStatus=" + mStatus + ", nickName=" + nickName + ", joinDate=" + joinDate + "]";
+		return "Member [mNo=" + mNo + ", mId=" + mId + ", mPwd=" + mPwd + ", email=" + email + ", mStatus=" + mStatus
+				+ ", joinDate=" + joinDate + "]";
 	}
+
+
+	
 	
 	
 }
