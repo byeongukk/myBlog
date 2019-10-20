@@ -13,11 +13,29 @@
   	</resultMap>
 
   
-  <select id="loginCheck" resultMap="memberResultSet" parameterType="Member">
-	SELECT *
-		FROM MEMBER
-	WHERE MID = #{mId}
-	AND MPWD = #{mPwd}
-	AND M_STATUS = 'Y'
-  </select>
+	<select id="loginCheck" resultMap="memberResultSet" parameterType="Member">
+		SELECT *
+			FROM MEMBER
+		WHERE MID = #{mId}
+		AND MPWD = #{mPwd}
+		AND M_STATUS = 'Y'
+	</select>
+	
+	<select id="duplicationCheckId" resultType="String" parameterType="String">
+		SELECT MID
+			FROM MEMBER
+		WHERE MID = #{mId}
+	</select>
+	
+	<insert id="memberJoin" parameterType="JoinRequest">
+		INSERT INTO MEMBER (MNO, MID, MPWD, EMAIL, M_STATUS,JOIN_DATE)
+		VALUES(SEQ_MNO.NEXTVAL,#{mId},#{mPwd},#{email},default,sysdate)
+	</insert>
+	
+	<select id="selectEncPwd" resultType="String" parameterType="String">
+		SELECT MPWD
+			FROM MEMBER
+		WHERE MID = #{mId}
+	</select>
+
 </mapper>

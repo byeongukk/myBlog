@@ -15,21 +15,21 @@ public class BeforeControllerAdvice {
 	
 	@Before("allPointcut()")
 	public void beforeLog(JoinPoint jp) {
-		System.out.println("*********Controller È£Ãâ**********");
+		System.out.println("*********Controller í˜¸ì¶œ**********");
 		
 		
 		String methodName = jp.getSignature().getName();
 		Object[] args = jp.getArgs();
 		
-		System.out.println("[¸Ş¼Òµå È£Ãâ Àü È®ÀÎ ] : " + methodName + "() ¸Ş¼Òµå ¸Å°³º¯¼ö °¹¼ö : " + args.length);
+		System.out.println("[ë©”ì†Œë“œ í˜¸ì¶œ ì „ í™•ì¸ ] : " + methodName + "() ë©”ì†Œë“œ ë§¤ê°œë³€ìˆ˜ ê°¯ìˆ˜ : " + args.length);
 		
 		int argsLength = args.length;
 		
 		for(int i=0; i < argsLength; i++) {
-			System.out.println(i + "¹øÂ° ¸Å°³º¯¼ö Á¤º¸ : " + args[i].toString());
-			System.out.println(i + "¹øÂ° ¸Å°³º¯¼ö Å¬·¹½º : " + args[i].getClass());
+			System.out.println(i + "ë²ˆì§¸ ë§¤ê°œë³€ìˆ˜ ì •ë³´ : " + args[i].toString());
+			System.out.println(i + "ë²ˆì§¸ ë§¤ê°œë³€ìˆ˜ í´ë ˆìŠ¤ : " + args[i].getClass());
 		}
 		
-		System.out.println("*********Controller È£Ãâ³¡**********");
+		System.out.println("*********Controller í˜¸ì¶œë**********");
 	}
 }

@@ -1,41 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
-
 	<!-- Appenders -->
 	<appender name="console" class="org.apache.log4j.ConsoleAppender">
 		<param name="Target" value="System.out" />
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+			<param name="ConversionPattern" value="%-5p: %c{1} - %m%n" />
 		</layout>
 	</appender>
 	
-	<!-- Application Loggers -->
+	<!-- 파일에 로그를 출력할 수 있게 하는 설정 -->	
+	<appender name="fileLogger" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" 
+		value="C:/Users/cbuk9/git/repository2/myBlog/src/main/resources/logs/login.log"/>
+		<!-- 덮어쓰지 않고 추가 하도록 -->
+		<param name="Append" value="true"/>
+		<!-- 날짜가 바뀌면 확장저명 뒤에 붙을 이름을 날짜로 지정하겠다는 내용 -->
+		<param name="DataPattern" value="'-'yyyy-MM-dd"/>
+		<!-- 실제로 로그가 출력될 포맷을 잡아주는 태그 -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{HH:mm:ss}][%-5p](%F:%L) - %m%n"/>
+		</layout>
+	</appender>
+	
 	<logger name="com.home.myblog">
 		<level value="info" />
 	</logger>
-	
-	<!-- 3rdparty Loggers -->
-	<logger name="org.springframework.core">
-		<level value="info" />
-	</logger>
-	
-	<logger name="org.springframework.beans">
-		<level value="info" />
-	</logger>
-	
-	<logger name="org.springframework.context">
-		<level value="info" />
-	</logger>
 
-	<logger name="org.springframework.web">
-		<level value="info" />
-	</logger>
-
-	<!-- Root Logger -->
 	<root>
 		<priority value="warn" />
-		<appender-ref ref="console" />
+		<appender-ref ref="fileLogger" />
 	</root>
 	
 </log4j:configuration>

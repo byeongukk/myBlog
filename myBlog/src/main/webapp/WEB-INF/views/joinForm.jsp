@@ -7,8 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <link href="../../resources/css/loginForm.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
 	.errorCode{
 	
@@ -16,7 +17,12 @@
 </style>
 </head>
 
-<body cellpadding="0" cellspacing="0" marginleft="0" margintop="0" width="100%" height="100%" align="center">
+<%-- 잘못된 값이 있을경우 값 입력 --%>
+<c:set var="errMessage" value="${ errors.fieldErrors[0].defaultMessage }"/>
+<c:set var="errId" value="${ errors.fieldErrors[0].field }"/>
+
+<%-- load후 function을 호출하여 잘못된 값이 있으면 alert창 띄움 --%>
+<body onload="fn_errCheck( '${ errMessage }','${ errId }' )" cellpadding="0" cellspacing="0" marginleft="0" margintop="0" width="100%" height="100%" align="center">
 
 	<div class="card align-middle"
 		style="width: 30rem; border-radius: 20px;">
@@ -29,8 +35,8 @@
 				
 				<form:errors path="mId"/>
 				<form:label path="mId" for="mId">아이디</form:label> 
-				<form:input path="mId" id="mId" type="text" name="mId" class="form-control" />
-				<br><br> 
+				<form:input path="mId" id="mId" type="text" name="mId" class="form-control" />	
+				<br>
 				
 				<form:label path="mPwd" for="mPwd">비밀번호</form:label> 
 				<form:input path="mPwd" type="password" id="mPwd" name="mPwd" class="form-control" placeholder="Password"/>
@@ -49,12 +55,21 @@
 				
 				<button id="btn-Yes" class="btn btn-primary btn-block" type="submit">회원가입</button>
 				<br><br>
-				<c:forEach items="${errors.fieldErrors}" var="err">
-					<s:message code="${err.codes[0]}"  text="${err.field}: ${err.defaultMessage}" />;
-				</c:forEach>
-				
+
+			
 			</form:form>
-		
+			
+			<script>
+				function fn_errCheck(errMessage, errId){
+					var _errId = "#"+errId;
+					//잘못된 값이 있을경우 alert을 띄운 후 focus함
+					if(!(errMessage == "")){
+						alert(errMessage);
+						$(_errId).focus();
+					}
+				}
+			</script>
+					
 		</div>
 	</div>
 </body>
