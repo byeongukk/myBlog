@@ -4,7 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.home.myblog.member.model.vo.Member" alias="Member"/>	
+		<typeAlias type="com.home.myblog.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.home.myblog.member.model.vo.JoinRequest" alias="JoinRequest"/>		
 	</typeAliases>
 	
 	<mappers>

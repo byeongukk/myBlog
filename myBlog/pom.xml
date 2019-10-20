@@ -58,6 +58,13 @@
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+         </dependency>
+         
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -163,6 +170,14 @@
 		    <artifactId>aspectjweaver</artifactId>
 		    <version>1.9.2</version>
 		</dependency>
+		
+		<!-- spring aspect -->
+
+		<dependency>
+	        <groupId>org.springframework</groupId>
+	        <artifactId>spring-aspects</artifactId>
+	        <version>${org.springframework-version}</version>
+		</dependency>
 				
 		
 		<!-- 동적으로 proxy 생성을 해 주는 라이브러리(AOP의 성능 향상) -->
@@ -185,6 +200,28 @@
 		    <version>6.0.7.Final</version>
 		</dependency>   
 		
+		 <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-core</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+				
+				
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-web</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		
+		
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
 
 	</dependencies>
 	

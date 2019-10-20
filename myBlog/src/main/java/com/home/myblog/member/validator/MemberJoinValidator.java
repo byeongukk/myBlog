@@ -37,13 +37,19 @@ public class MemberJoinValidator implements Validator {
 			errors.rejectValue("mId", "lengthsize","아이디는 4~10자리 사이로 작성해주세요");
 		}
 		
+		int pwdLength = joinReq.getmPwd().length();
+		
+		if(pwdLength < 8 || pwdLength > 20) {
+			errors.rejectValue("mPwd", "lengthsize","비밀번호는 8~20자리 사이로 입력해주세요");
+		}
+		
 		if(joinReq.getEmail() == null || joinReq.getEmail().trim().isEmpty()) {
 			errors.rejectValue("email", "required", "필수 항목 입니다.");
 		}
 		
-		ValidationUtils.rejectIfEmpty(errors, "mPwd", "required", "필수 항목 입니다");
-		ValidationUtils.rejectIfEmpty(errors, "mPwdCheck", "required", "필수 항목 입니다");
-		ValidationUtils.rejectIfEmpty(errors, "mId", "required", "필수 항목 입니다");
+		ValidationUtils.rejectIfEmpty(errors, "mPwd", "required", "비밀번호를 입력해주세요");
+		ValidationUtils.rejectIfEmpty(errors, "mPwdCheck", "required", "비밀번호 확인을 입력해주세요");
+		ValidationUtils.rejectIfEmpty(errors, "mId", "required", "아이디는 필수 항목입니다.");
 		
 		if(!joinReq.getmPwd().isEmpty()) {
 			if(!joinReq.isPwdEqualToCheckPwd()) {
