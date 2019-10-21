@@ -24,11 +24,11 @@ public class LoginLogging {
 	@AfterReturning(pointcut="loginPointcut()", returning = "returnObj")
 	public void loginLog(JoinPoint jp, Object returnObj) {
 		
-		if(returnObj instanceof Member) {
-			Member m = (Member) returnObj;
-			System.out.println(new Date()+" : $"+m.getmId() +"$님이 로그인했습니다.");
-			logger.info(new Date()+" : $"+m.getmId() +"$님이 로그인했습니다.");
-		}
+		/*
+		 * if(returnObj instanceof Member) { Member m = (Member) returnObj;
+		 * System.out.println(new Date()+" : $"+m.getmId() +"$님이 로그인했습니다.");
+		 * logger.info(new Date()+" : $"+m.getmId() +"$님이 로그인했습니다."); }
+		 */
 		
 	}
 	

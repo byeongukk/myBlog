@@ -43,6 +43,7 @@ public class MemberServiceImpl implements MemberService{
 		}else {
 			member.setmPwd(encPassword);
 			loginMember = md.loginMember(sqlSession, member);
+			LOG.info(new Date() + " : $"+ loginMember.getmId()+"$님이 로그인 했습니다..");
 		}
 		return loginMember;
 	}
