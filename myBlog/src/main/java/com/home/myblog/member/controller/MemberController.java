@@ -33,7 +33,8 @@ public class MemberController {
 	public String loginCheck(Member member,HttpServletRequest request) {
 
 		Member loginMember;
-			
+		// id는 소문자로만 검사
+		member.setmId(member.getmId().toLowerCase());
 		try {
 			loginMember = ms.loginMember(member);
 			request.setAttribute("loginMember", loginMember);
@@ -53,7 +54,6 @@ public class MemberController {
 	
 	@RequestMapping("join.me")
 	public String joinMember(HttpServletRequest request,Model model, JoinRequest joinReq, Errors errors) {
-		System.out.println(joinReq);
 		
 		new MemberJoinValidator().validate(joinReq, errors);
 		
@@ -63,8 +63,11 @@ public class MemberController {
 			return "joinForm";
 		}
 		
+		//db에 저장될 아이디는 전체 소문자로
+		joinReq.setmId(joinReq.getmId().toLowerCase());
 		
 		try {
+			//아이디 중복 체크
 			ms.duplicationCheckId(joinReq.getmId());
 		} catch (AlreadyExistingIdException e) {
 			errors.rejectValue("mId","duplicate", e.getMessage());

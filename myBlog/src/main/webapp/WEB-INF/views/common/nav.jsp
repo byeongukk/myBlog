@@ -24,7 +24,7 @@
 					<a class="nav-link" href="showProject.do">Project</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Community</a>
+					<a class="nav-link" href="selectCommunityList.do">Community</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="showContact.do">Contact</a>

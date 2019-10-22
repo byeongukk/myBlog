@@ -39,4 +39,10 @@ public class HomeController {
 		return "contact";
 	}
 	
+	@RequestMapping("selectCommunityList.do")
+	public String selectCommunityList() {
+		return "community";
+	}
+	
+	
 }

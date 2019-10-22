@@ -12,72 +12,67 @@
 	
 	 <!-- 파일로 로그를 남김 -->
 
-       <appender name="fileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<!-- <appender name="fileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
 
-         <file>C:/Users/cbuk9/git/repository2/myBlog/src/main/resources/logs/join.log</file>
-         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-                  <Pattern>
-                          %d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n
-                  </Pattern>
-         </encoder>
-
-
-
-                <!-- 로그를 남기는 파일의 용량이 50KB가 넘으면 이를 압축 파일로 만들고 새로 로그 파일로 만들라는 정책 -->
-
-                <triggeringPolicy
-
-                         class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-
-                         <MaxFileSize>10KB</MaxFileSize>
-
-                </triggeringPolicy>
-
-
-
-                <!-- 파일을 덮어쓰는 정책 -->
-
-                <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-
-                         <FileNamePattern>C:\LogExample\logexample2.%i.log.zip</FileNamePattern>
-
-                         <!--
-
-                             MinIndex가 1이고, MaxIndex가 10이므로, 위의 파일 이름 패턴에 따라 아래의 로그 파일이 생길 것이다.
-
-                             logexample2.1.log.zip   logexample2.2.log.zip  .... logexample2.10.log.zip
-
-                             이 상태에서 또 10KB가 넘으면 logexample2.1.log.zip이 된다.
-
-                         -->
-
-                         <MinIndex>1</MinIndex>
-
-                         <MaxIndex>10</MaxIndex>
-
-                </rollingPolicy>
-
-       </appender>
+		<file>C:/Users/cbuk9/git/repository2/myBlog/src/main/resources/logs/join.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n
+			</Pattern>
+		</encoder>
+		
+		
 	
 	
-	     <logger name="com.home.myblog"  level="info" additivity="false">
-
-            <appender-ref ref="fileAppender" />
-
-         </logger>
-
-
-
-
-
-         <!-- root는 글로벌 로거를 의미하며, 위의 logger에 해당하지 않으면 root 로거가 실행된다. -->
-
-         <root level="warn">
-
-                  <appender-ref ref="consoleAppender" />
-
-         </root>
 	
+	    로그를 남기는 파일의 용량이 50KB가 넘으면 이를 압축 파일로 만들고 새로 로그 파일로 만들라는 정책
+		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>10KB</MaxFileSize>
+		</triggeringPolicy>
+	
+		파일을 덮어쓰는 정책
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<FileNamePattern>C:\LogExample\logexample2.%i.log.zip</FileNamePattern>
+		
+				
+				MinIndex가 1이고, MaxIndex가 10이므로, 위의 파일 이름 패턴에 따라 아래의 로그 파일이 생길 것이다.
+				logexample2.1.log.zip   logexample2.2.log.zip  .... logexample2.10.log.zip
+				이 상태에서 또 10KB가 넘으면 logexample2.1.log.zip이 된다.
+				
+		
+			<MinIndex>1</MinIndex>
+			<MaxIndex>10</MaxIndex>
+		</rollingPolicy>
+
+	</appender> -->
+	
+	<!-- 파일에 로그를 출력할 수 있게 하는 설정 -->	
+	<appender name="fileLogger" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" 
+		value="C:/Users/cbuk9/git/repository2/myBlog/src/main/resources/logs/system.log"/>
+		<!-- 덮어쓰지 않고 추가 하도록 -->
+		<param name="Append" value="true"/>
+		<!-- 날짜가 바뀌면 확장저명 뒤에 붙을 이름을 날짜로 지정하겠다는 내용 -->
+		<param name="DataPattern" value="'-'yyyy-MM-dd"/>
+		<!-- 실제로 로그가 출력될 포맷을 잡아주는 태그 -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{HH:mm:ss}][%-5p](%F:%L) - %m%n"/>
+		</layout>
+	</appender>
+
+
+	<logger name="com.home.myblog"  level="info" additivity="false">
+		<appender-ref ref="fileAppender" />
+	</logger>
+
+
+
+
+
+   <!-- root는 글로벌 로거를 의미하며, 위의 logger에 해당하지 않으면 root 로거가 실행된다. -->
+	<root level="warn">
+		<appender-ref ref="consoleAppender" />
+	</root>
 	
 	
 </configuration>
