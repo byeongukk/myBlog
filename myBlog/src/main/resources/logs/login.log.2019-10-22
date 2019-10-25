@@ -1,0 +1,17 @@
+[21:47:10][WARN ](DispatcherServlet.java:1248) - No mapping for GET /showLoginForm.do
+[21:47:32][WARN ](DispatcherServlet.java:1248) - No mapping for GET /showLoginForm.do
+[21:47:37][WARN ](DispatcherServlet.java:1248) - No mapping for GET /showLoginForm.do
+[21:48:03][INFO ](MemberServiceImpl.java:46) - Tue Oct 22 21:48:03 KST 2019 : $aassdd$님이 로그인 했습니다..
+[21:52:36][INFO ](MemberServiceImpl.java:46) - Tue Oct 22 21:52:36 KST 2019 : $aassdd$님이 로그인 했습니다..
+[21:53:45][WARN ](DispatcherServlet.java:1248) - No mapping for GET /showContact.me
+[21:53:54][WARN ](DispatcherServlet.java:1248) - No mapping for GET /showContact.me
+[21:54:11][INFO ](MemberServiceImpl.java:46) - Tue Oct 22 21:54:11 KST 2019 : $aassdd$님이 로그인 했습니다..
+[21:58:26][INFO ](MemberServiceImpl.java:46) - Tue Oct 22 21:58:26 KST 2019 : $aassdd$님이 로그인 했습니다..
+[22:00:33][INFO ](MemberServiceImpl.java:46) - Tue Oct 22 22:00:33 KST 2019 : $aassdd$님이 로그인 했습니다..
+[22:34:34][INFO ](MemberServiceImpl.java:46) - Tue Oct 22 22:34:34 KST 2019 : $aassdd$님이 로그인 했습니다..
+[22:43:45][INFO ](MemberServiceImpl.java:46) - Tue Oct 22 22:43:45 KST 2019 : $aassdd$님이 로그인 했습니다..
+[22:45:26][INFO ](MemberServiceImpl.java:46) - Tue Oct 22 22:45:26 KST 2019 : $aassdd$님이 로그인 했습니다..
+[22:49:20][INFO ](MemberServiceImpl.java:46) - Tue Oct 22 22:49:20 KST 2019 : $aassdd$님이 로그인 했습니다..
+[22:52:59][INFO ](MemberServiceImpl.java:59) - Tue Oct 22 22:52:59 KST 2019 : $admin$님이 회원가입 했습니다.
+[22:53:23][INFO ](MemberServiceImpl.java:46) - Tue Oct 22 22:53:23 KST 2019 : $admin$님이 로그인 했습니다..
+[22:55:19][INFO ](MemberServiceImpl.java:46) - Tue Oct 22 22:55:19 KST 2019 : $admin$님이 로그인 했습니다..

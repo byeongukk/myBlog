@@ -1,5 +1,7 @@
 package com.home.myblog.member.model.dao;
 
+import java.util.HashMap;
+
 import javax.security.auth.login.LoginException;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -34,5 +36,22 @@ public class MemberDaoImpl implements MemberDao{
 	public String selectEncPassword(SqlSessionTemplate sqlSession, Member member) {
 		return sqlSession.selectOne("Member.selectEncPwd", member.getmId());
 	}
+
+	@Override
+	public int updateEmailConfirm(SqlSessionTemplate sqlSession, String mid) {
+		return sqlSession.update("Member.updateEmailConfirm",mid);
+	}
+
+	@Override
+	public void insertEmailCode(SqlSessionTemplate sqlSession, HashMap<String, Object> hmap) {
+		sqlSession.update("Member.insertEmailCode",hmap);
+	}
+
+	@Override
+	public Member selectEmailCodeCheck(SqlSessionTemplate sqlSession, HashMap<String, Object> hmap) {
+		return sqlSession.selectOne("Member.selectEmailCodeCheck", hmap);
+	}
+
+
 
 }

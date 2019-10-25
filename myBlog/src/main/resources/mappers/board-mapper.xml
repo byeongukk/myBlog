@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="Board">
+  	<resultMap type="com.home.myblog.board.model.vo.Board" id="boardResultSet">
+  		<id property="bNo" column="BNO"/>
+  		<result property="bTitle" column="BTITLE"/>
+  		<result property="bContent" column="BCONTENT"/>
+  		<result property="writenDate" column="WRITEN_DATE"/>
+  		<result property="bCount" column="BCOUNT"/>
+  		<result property="bWriter" column="MID"/>
+  		<result property="bCode" column="BCODE"/>
+  		<result property="bStatus" column="BSTATUS"/>
+  	</resultMap>
+
+	<select id="selectBoardList" resultMap="boardResultSet" parameterType="java.util.HashMap">
+		SELECT BNO, BTITLE, BCONTENT, WRITEN_DATE,BCOUNT,M.MID,BCODE
+		FROM BOARD 
+		JOIN MEMBER M ON(MNO = BWRITER)
+		WHERE BCODE = #{bCode}
+		AND BSTATUS = 'Y'
+		ORDER BY BNO DESC
+	</select>
+	
+	<insert id="insertBoard" parameterType="java.util.HashMap">
+		INSERT INTO BOARD(BNO, BTITLE, BCONTENT, WRITEN_DATE, BCOUNT, BWRITER, BCODE,BSTATUS)
+   		VALUES(SEQ_BNO.NEXTVAL, NULL, #{board.bContent}, SYSDATE, DEFAULT, #{member.mNo}, #{board.bCode}, DEFAULT)
+	</insert>
+</mapper>

@@ -13,7 +13,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 
-
+	<!-- navigator -->
 <body onload="fn_alertMsg( '${ msg }')" cellpadding="0" cellspacing="0" marginleft="0" margintop="0" width="100%" height="100%" align="center">
 
 	<div class="card align-middle" style="width: 20rem; border-radius: 20px;">

@@ -1,5 +1,7 @@
 package com.home.myblog.member.model.dao;
 
+import java.util.HashMap;
+
 import javax.security.auth.login.LoginException;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -17,5 +19,12 @@ public interface MemberDao {
 	int joinMember(SqlSessionTemplate sqlSession, JoinRequest joinReq);
 
 	String selectEncPassword(SqlSessionTemplate sqlSession, Member member);
+
+	int updateEmailConfirm(SqlSessionTemplate sqlSession, String mid);
+
+	void insertEmailCode(SqlSessionTemplate sqlSession, HashMap<String, Object> hmap);
+
+	Member selectEmailCodeCheck(SqlSessionTemplate sqlSession, HashMap<String, Object> hmap);
+
 
 }
