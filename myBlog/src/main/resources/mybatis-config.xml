@@ -6,9 +6,11 @@
 	<typeAliases>
 		<typeAlias type="com.home.myblog.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.home.myblog.member.model.vo.JoinRequest" alias="JoinRequest"/>		
+		<typeAlias type="com.home.myblog.board.model.vo.Board" alias="Board"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/board-mapper.xml"/>
 	</mappers>
 </configuration>

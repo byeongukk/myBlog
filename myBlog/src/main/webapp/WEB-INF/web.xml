@@ -69,4 +69,20 @@
 		<url-pattern>*.me</url-pattern>
 	</servlet-mapping>
 
+
+	<servlet>
+		<servlet-name>board</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/board-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>board</servlet-name>
+		<url-pattern>*.bo</url-pattern>
+	</servlet-mapping>
+
 </web-app>

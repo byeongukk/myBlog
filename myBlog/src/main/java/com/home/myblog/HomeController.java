@@ -38,11 +38,7 @@ public class HomeController {
 	public String showContact() {
 		return "contact";
 	}
-	
-	@RequestMapping("selectCommunityList.do")
-	public String selectCommunityList() {
-		return "community";
-	}
+
 	
 	
 }
