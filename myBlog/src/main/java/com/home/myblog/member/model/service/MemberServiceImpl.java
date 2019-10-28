@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import com.home.myblog.common.MailHandler;
 import com.home.myblog.common.Tempkey;
 import com.home.myblog.member.controller.MemberController;
+import com.home.myblog.member.exception.AlreadyExistingEmailException;
 import com.home.myblog.member.exception.AlreadyExistingIdException;
 import com.home.myblog.member.exception.EmailConfirmException;
 import com.home.myblog.member.model.dao.MemberDao;
@@ -53,8 +54,16 @@ public class MemberServiceImpl implements MemberService{
 		}else {
 			member.setmPwd(encPassword);
 			loginMember = md.loginMember(sqlSession, member);
-			LOG.info(new Date() + " : $"+ loginMember.getmId()+"$님이 로그인 했습니다..");
 		}
+		
+		//이메일 인증 여부 체크
+		if(loginMember.geteCheck().equals("N") || loginMember.geteCheck() == null) {
+			throw new LoginException("이메일 인증이 되지 않았습니다.이메일 인증후 다시 시도해주세요.");
+		}
+		
+		LOG.info(new Date() + " : $"+ loginMember.getmId()+"$님이 로그인 했습니다..");
+	
+		
 		return loginMember;
 	}
 
@@ -112,6 +121,11 @@ public class MemberServiceImpl implements MemberService{
 		if(result <= 0 ) {
 			throw new EmailConfirmException("이미 인증되었습니다.");
 		}
+	}
+
+	@Override
+	public void duplicationCheckEmail(String email) throws AlreadyExistingEmailException {
+		md.duplicationCheckEmail(sqlSession,email);
 	}
 	
 

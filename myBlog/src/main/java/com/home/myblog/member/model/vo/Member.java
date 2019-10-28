@@ -9,17 +9,19 @@ public class Member implements java.io.Serializable{
 	private String mPwd;
 	private String email;
 	private String mStatus;
+	private String eCheck;
 	private Date joinDate;
 	
 	public Member() {}
 
-	public Member(int mNo, String mId, String mPwd, String email, String mStatus, Date joinDate) {
+	public Member(int mNo, String mId, String mPwd, String email, String mStatus, String eCheck, Date joinDate) {
 		super();
 		this.mNo = mNo;
 		this.mId = mId;
 		this.mPwd = mPwd;
 		this.email = email;
 		this.mStatus = mStatus;
+		this.eCheck = eCheck;
 		this.joinDate = joinDate;
 	}
 
@@ -63,6 +65,14 @@ public class Member implements java.io.Serializable{
 		this.mStatus = mStatus;
 	}
 
+	public String geteCheck() {
+		return eCheck;
+	}
+
+	public void seteCheck(String eCheck) {
+		this.eCheck = eCheck;
+	}
+
 	public Date getJoinDate() {
 		return joinDate;
 	}
@@ -74,7 +84,7 @@ public class Member implements java.io.Serializable{
 	@Override
 	public String toString() {
 		return "Member [mNo=" + mNo + ", mId=" + mId + ", mPwd=" + mPwd + ", email=" + email + ", mStatus=" + mStatus
-				+ ", joinDate=" + joinDate + "]";
+				+ ", eCheck=" + eCheck + ", joinDate=" + joinDate + "]";
 	}
 
 

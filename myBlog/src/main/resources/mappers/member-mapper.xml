@@ -9,6 +9,7 @@
   		<result property="mPwd" column="MPWD"/>
   		<result property="email" column="EMAIL"/>
   		<result property="mStatus" column="M_STATUS"/>
+  		<result property="eCheck" column="EMAIL_CHECK"/>
   		<result property="joinDate" column="JOIN_DATE"/>
   	</resultMap>
 
@@ -51,6 +52,12 @@
 		WHERE MID = #{mId}
 		AND EMAIL_CODE = #{authkey}
 		AND EMAIL_CHECK = 'N'
+	</select>
+	
+	<select id="duplicationCheckEmail" resultType="String" parameterType="String">
+		SELECT EMAIL
+			FROM MEMBER
+		WHERE EMAIL = #{email}
 	</select>
 
 </mapper>
