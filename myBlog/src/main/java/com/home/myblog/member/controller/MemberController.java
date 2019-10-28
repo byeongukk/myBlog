@@ -20,6 +20,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.home.myblog.common.Tempkey;
+import com.home.myblog.member.exception.AlreadyExistingEmailException;
 import com.home.myblog.member.exception.AlreadyExistingIdException;
 import com.home.myblog.member.model.service.MemberService;
 import com.home.myblog.member.model.vo.JoinRequest;
@@ -89,8 +90,18 @@ public class MemberController {
 		try {
 			//아이디 중복 체크
 			ms.duplicationCheckId(joinReq.getmId());
+			//이메일 중복체크
+			ms.duplicationCheckEmail(joinReq.getEmail());
 		} catch (AlreadyExistingIdException e) {
+			//아이디 중복시
 			errors.rejectValue("mId","duplicate", e.getMessage());
+			model.addAttribute("joinReq",joinReq);
+			model.addAttribute("errors",errors);
+			return "joinForm";
+			
+		} catch (AlreadyExistingEmailException e) {
+			//이메일 중복시
+			errors.rejectValue("email","duplicate", e.getMessage());
 			model.addAttribute("joinReq",joinReq);
 			model.addAttribute("errors",errors);
 			return "joinForm";

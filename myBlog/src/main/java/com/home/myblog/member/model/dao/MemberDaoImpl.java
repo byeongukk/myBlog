@@ -7,6 +7,7 @@ import javax.security.auth.login.LoginException;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.home.myblog.member.exception.AlreadyExistingEmailException;
 import com.home.myblog.member.exception.AlreadyExistingIdException;
 import com.home.myblog.member.model.vo.JoinRequest;
 import com.home.myblog.member.model.vo.Member;
@@ -50,6 +51,14 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public Member selectEmailCodeCheck(SqlSessionTemplate sqlSession, HashMap<String, Object> hmap) {
 		return sqlSession.selectOne("Member.selectEmailCodeCheck", hmap);
+	}
+
+	@Override
+	public void duplicationCheckEmail(SqlSessionTemplate sqlSession, String email) throws AlreadyExistingEmailException {
+		String result = sqlSession.selectOne("Member.duplicationCheckEmail", email);
+		if(!(result == null)) {
+			throw new AlreadyExistingEmailException("이미 사용중인 이메일 입니다.");
+		}
 	}
 
 

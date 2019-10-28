@@ -6,6 +6,7 @@ import javax.security.auth.login.LoginException;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.home.myblog.member.exception.AlreadyExistingEmailException;
 import com.home.myblog.member.exception.AlreadyExistingIdException;
 import com.home.myblog.member.model.vo.JoinRequest;
 import com.home.myblog.member.model.vo.Member;
@@ -25,6 +26,8 @@ public interface MemberDao {
 	void insertEmailCode(SqlSessionTemplate sqlSession, HashMap<String, Object> hmap);
 
 	Member selectEmailCodeCheck(SqlSessionTemplate sqlSession, HashMap<String, Object> hmap);
+
+	void duplicationCheckEmail(SqlSessionTemplate sqlSession, String email) throws AlreadyExistingEmailException;
 
 
 }
