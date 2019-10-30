@@ -28,3 +28,21 @@ Library : jQuery / gmail <br>
       <li>페이징</li>
     </ul>
 </ul>
+
+<hr>
+<br><br>
+
+<h3>구현 예정 기능</h3>
+<ul>
+  <li>코멘트
+    <ul>
+      <li>코멘트 수정/삭제<li>
+    </ul>
+  <li>
+  <li>관리자 페이지
+     <ul>
+       <li>로그인 이력관리</li>       
+    </ul>
+  </li>
+ 
+<ul>
