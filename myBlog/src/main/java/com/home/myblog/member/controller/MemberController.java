@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.home.myblog.common.ClientUtils;
 import com.home.myblog.common.Tempkey;
 import com.home.myblog.member.exception.AlreadyExistingEmailException;
 import com.home.myblog.member.exception.AlreadyExistingIdException;
@@ -39,7 +40,8 @@ public class MemberController {
 	
 	@RequestMapping("login.me")
 	public String loginCheck(Member member,HttpServletRequest request,Model model, HttpSession session) {
-
+		
+		System.out.println(ClientUtils.getRemoteIP(request));
 		Member loginMember;
 		// id는 소문자로만 검사
 		member.setmId(member.getmId().toLowerCase());

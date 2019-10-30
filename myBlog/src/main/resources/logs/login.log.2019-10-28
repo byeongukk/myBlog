@@ -1,0 +1,5 @@
+[19:28:34][INFO ](MemberServiceImpl.java:61) - Mon Oct 28 19:28:34 KST 2019 : $aassdd$님이 로그인 했습니다..
+[19:34:53][INFO ](MemberServiceImpl.java:61) - Mon Oct 28 19:34:53 KST 2019 : $wewewe123$님이 로그인 했습니다..
+[19:35:32][WARN ](BCryptPasswordEncoder.java:85) - Empty encoded password
+[19:39:31][INFO ](MemberServiceImpl.java:80) - Mon Oct 28 19:39:31 KST 2019 : $uukk5555$님이 회원가입 했습니다.
+[19:40:14][INFO ](MemberServiceImpl.java:66) - Mon Oct 28 19:40:14 KST 2019 : $uukk5555$님이 로그인 했습니다..

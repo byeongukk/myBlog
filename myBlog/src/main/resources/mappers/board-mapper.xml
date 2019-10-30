@@ -27,4 +27,24 @@
 		INSERT INTO BOARD(BNO, BTITLE, BCONTENT, WRITEN_DATE, BCOUNT, BWRITER, BCODE,BSTATUS)
    		VALUES(SEQ_BNO.NEXTVAL, NULL, #{board.bContent}, SYSDATE, DEFAULT, #{member.mNo}, #{board.bCode}, DEFAULT)
 	</insert>
+	
+	<!-- COMMENT 리스트 카운트 조회  -->
+	<select id="selectCmListCount" resultType="int" parameterType="int">
+		SELECT COUNT(*)
+		FROM BOARD
+		WHERE BCODE = #{bCode}
+		AND BSTATUS ='Y'
+	</select>
+	<!-- 게시글 페이징 조회 -->
+	<select id="selectBoardPagingList" resultMap="boardResultSet" parameterType="java.util.HashMap">
+		SELECT * 
+		FROM( SELECT ROWNUM RNUM, P.*
+			FROM (SELECT BNO, BTITLE, BCONTENT, WRITEN_DATE,BCOUNT,M.MID,BCODE
+				FROM BOARD
+				JOIN MEMBER M ON(MNO = BWRITER)
+				WHERE BCODE = #{bCode}
+			ORDER BY BNO DESC) P)
+		WHERE RNUM BETWEEN #{pi.start} AND #{pi.last}
+	</select>
+	
 </mapper>

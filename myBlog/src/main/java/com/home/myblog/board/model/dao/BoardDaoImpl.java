@@ -21,4 +21,14 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.insert("Board.insertBoard",hmap);
 	}
 
+	@Override
+	public int getCommunityListCount(SqlSessionTemplate sqlSession, int bCode) {
+		return sqlSession.selectOne("Board.selectCmListCount", bCode);
+	}
+
+	@Override
+	public ArrayList<Board> selectBoardPagingList(SqlSessionTemplate sqlSession, HashMap<String, Object> hmap) {
+		return (ArrayList)sqlSession.selectList("Board.selectBoardPagingList",hmap);
+	}
+
 }
