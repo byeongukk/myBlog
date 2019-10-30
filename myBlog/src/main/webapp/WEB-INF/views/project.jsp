@@ -10,61 +10,15 @@
   <meta name="author" content="">
 
   <title>MyBlog</title>
-	<!-- import link -->	
+<!-- import link -->	
 <jsp:include page="link.jsp"/>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
-<!-- 합쳐지고 최소화된 최신 CSS -->
+<!-- CSS 파일 -->
+<link href="../../resources/css/project.css" rel="stylesheet">
+
+
 </head>
-<style>
-	.project-container {
-		height: auto;
-	}
-	.project-thumbnail {
-		height: 20em;
-		margin-bottom: 1rem;
-		position: relative;
-		background: no-repeat center center;
-		background-size: cover;
-		box-shadow: 0 2px 4px rgba(0,0,0,.2), 0 2px 4px rgba(0,0,0,.2);
-	}
-	
-	.project-thumbnail, .thumbnail{
-		border-radius: 15px 10px;
-	}
 
-	.project-brief{
-		padding: 20px;
-		text-align: center;
-		
-	}
-	
-	.thumbnail{
-		height: 100%;
-		width: 100%;
-	}
-	.project-fn{
-		border: 1px lightgray solid;
-		background-color: lightgray;
-		border-radius: 20px 20px;
-		font-size : 15px;
-		display: inline-block;
-		font-family: 'Nanum Gothic', sans-serif;
-		
-	}
-	.project-wrap {
-		margin-bottom: 2em;
-	}
-	.project-git{
-		float: right;
-	}
-	.project-sub{
-		font-family: 'Jua', sans-serif;
-		margin-bottom: 20px;
-	}
-
-}
-
-</style>
 <body>
 	<!-- navigator -->
 	<jsp:include page="common/nav.jsp"/>
@@ -287,13 +241,6 @@
 	<hr>
 	<!-- Footer -->
 	<jsp:include page="common/footer.jsp"/>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="../../resources/vendor/jquery/jquery.min.js"></script>
-  <script src="../../resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Custom scripts for this template -->
-  <script src="../../resources/js/clean-blog.min.js"></script>
 
 </body>
 

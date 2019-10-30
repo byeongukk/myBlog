@@ -13,4 +13,8 @@ public interface BoardDao {
 
 	int insertBoard(SqlSessionTemplate sqlSession, HashMap<String, Object> hmap);
 
+	int getCommunityListCount(SqlSessionTemplate sqlSession, int bCode);
+
+	ArrayList<Board> selectBoardPagingList(SqlSessionTemplate sqlSession, HashMap<String, Object> hmap);
+
 }

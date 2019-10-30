@@ -28,5 +28,15 @@ public class BoardServiceImpl implements BoardService{
 	public void insertBoard(HashMap<String, Object> hmap) {
 		int result = bd.insertBoard(sqlSession, hmap);
 	}
+
+	@Override
+	public int getCommunityListCount(int bCode) {
+		return bd.getCommunityListCount(sqlSession, bCode);
+	}
+
+	@Override
+	public ArrayList<Board> selectBoardPagingList(HashMap<String, Object> hmap) {
+		return bd.selectBoardPagingList(sqlSession, hmap);
+	}
 	
 }

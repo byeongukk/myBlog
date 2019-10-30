@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.home.myblog.board.model.service.BoardService;
 import com.home.myblog.board.model.vo.Board;
+import com.home.myblog.common.PagingVo;
 import com.home.myblog.member.model.vo.Member;
 
 @Controller
@@ -23,14 +24,22 @@ public class BoardController {
 	
 	
 	@RequestMapping("selectCommunityList.bo")
-	public String selectCommunityList(HttpServletRequest request, Board board, Model model) {
+	public String selectCommunityList(HttpServletRequest request,PagingVo pi, Board board, Model model) {
 		HashMap<String,Object> hmap = new HashMap();
+		int bCode = 100;
+		System.out.println(pi);
+		hmap.put("pi", pi);
+		hmap.put("bCode", bCode);
 		
-		hmap.put("bCode", 100);
+		//ArrayList<Board> list = bs.selectBoardList(hmap);
+		ArrayList<Board> list = bs.selectBoardPagingList(hmap);
 		
-		ArrayList<Board> list = bs.selectBoardList(hmap);
+		//페이징 겟수 조회
+		pi.setTotal(bs.getCommunityListCount(bCode));
+		System.out.println(pi.getStart());
+		System.out.println(pi.getLast());
 		model.addAttribute("list",list);
-		
+		model.addAttribute("pi",pi);
 		return "community";
 	}
 	@RequestMapping("insertBoard.bo")

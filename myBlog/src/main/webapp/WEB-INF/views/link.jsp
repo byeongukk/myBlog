@@ -9,3 +9,9 @@
 
 <!-- Custom styles for this template -->
 <link href="../../resources/css/clean-blog.css" rel="stylesheet">
+  
+<script src="../../resources/vendor/jquery/jquery.min.js"></script>
+<script src="../../resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../../resources/js/clean-blog.min.js"></script>

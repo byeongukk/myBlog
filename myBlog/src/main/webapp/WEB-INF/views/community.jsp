@@ -9,25 +9,13 @@
 <meta charset="UTF-8">
 <title>community</title>
 <jsp:include page="link.jsp"/>
+<!-- CSS 파일 -->
+<link href="../../resources/css/community.css" rel="stylesheet">
+<!-- paging -->
+<script src="../../resources/js/paging.js"></script>
 <style>
-	.community-list{
-		margin-bottom: 2em;
-		box-shadow: 0 2px 4px rgba(0,0,0,.2), 0 2px 4px rgba(0,0,0,.2);
-	}
-	.comment{
-		margin-bottom: 5em;
-	}
-	.pagination-container{
-		align-items: center;
-	}
-	.asd{
-		border-bottom: 2px #2b8ff3;
-	}
 </style>
-
-
 </head>
-
 <body>
 	<!-- navigator -->
 	<jsp:include page="common/nav.jsp"/>
@@ -54,19 +42,19 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 mx-auto">
-				<div class="community-list">
-					<table class="table table-bordered">
+				<div id="list-area">
+					<table class="table">
 						<tbody>
 							<tr style="border-bottom: 1px solid #2b8ff3">
-								<th width="3%">No</th>
-								<th width="65%">Comment</th>
-								<th width="12%">name</th>
-								<th width="10%">date</th>
+								<th width="3%" >No</th>
+								<th width="70%">Comment</th>
+								<th width="15%">name</th>
+								<th width="15%">date</th>
 							</tr>
 							<c:forEach var="board" items="${ list }">
 								<tr>
 									<td style="font-size: 11px"><c:out value="${ board.bNo}"/></td>
-									<td style="font-size: 17px">
+									<td style="font-size: 17px; display: block;" class="comment" title="${ board.bContent }">
 										<c:choose>
 											<c:when test="${ fn:length(board.bContent) gt 40}">
 												<c:out value="${ fn:substring(board.bContent, 0, 40) }"/>...
@@ -83,26 +71,61 @@
 						</tbody>
 					</table>
 				</div>
-				
-				<div class="pagination-container">
-					<ul class="pagination">
-						<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">Next</a></li>
-					</ul>
+				<!-- 페이징 -->
+				<div class="paging-wrap">
+	       			<ul class="pagination justify-content-center">
+			            <!--맨 첫페이지 이동 -->
+        		        <li class="page-item"><a class="page-link" onclick='pagePre(${pi.pageCnt+1},${pi.pageCnt});'>«</a></li>
+                		<!--이전 페이지 이동 -->
+                		<li class="page-item"><a class="page-link" onclick='pagePre(${pi.pageStartNum},${pi.pageCnt});'>‹</a></li>
+			            <!--페이지번호 -->
+	    		        <c:forEach var='i' begin="${pi.pageStartNum}" end="${pi.pageLastNum}" step="1">
+    		      			
+    		      			<c:choose>
+    		      				<c:when test="${ i == pi.index+1 }">
+		    		    	  		<li><a class="page-link"><b>${i}</b></a></li>
+		    		      		</c:when>
+    		      				<c:when test="${ i != pi.index+1 }">
+    		      					<li class='pageIndex${i} page-item'><a class="page-link" onclick='pageIndex(${i});'>${i}</a></li>
+    		      				</c:when>
+    		      			</c:choose>
+	            			<br>
+	            		</c:forEach>
+	            
+		                <!--다음 페이지 이동 -->
+		                <li class="page-item"><a class="page-link" onclick='pageNext(${pi.pageStartNum},${pi.total},${pi.listCnt},${pi.pageCnt});'>›</a></li>
+		                <!--마지막 페이지 이동 -->
+		                <li class="page-item"><a class="page-link" onclick='pageLast(${pi.pageStartNum},${pi.total},${pi.listCnt},${pi.pageCnt});'>»</a></li>
+                			
+        			</ul>		
 				</div>
+				<!-- 선택된 값들을 보낼 form영역 -->
+		        <form onSubmit="selectCommunityList.bo" method="get" id='frmPaging'>
+		            <!--출력할 페이지번호, 출력할 페이지 시작 번호, 출력할 리스트 갯수 -->
+		            <input type='hidden' name='index' id='index' value='${pi.index}'>
+		            <input type='hidden' name='pageStartNum' id='pageStartNum' value='${pi.pageStartNum}'>
+		            <input type='hidden' name='listCnt' id='selected' value='${pi.listCnt}'>
+		        </form>
 				
 				
-				<div class="comment">
+				<div class="comment-insert">
 					<form action="insertBoard.bo" class="form-signin">
 						<div class="input-group mb-3">
-						  <input type="text" name="bContent" class="form-control" placeholder="Comment">
-						  <input type="hidden" name="bCode" value="100">
-						  <div class="input-group-append">
-						    <button class="btn btn-success" type="submit" style="padding: 6px 12px 6px 12px">submit</button>
-						  </div>
+							
+							<c:if test="${! empty sessionScope.loginMember }">
+								<input type="text" name="bContent" class="form-control" placeholder="Comment">
+								<input type="hidden" name="bCode" value="100">
+								<div class="input-group-append">
+									<button class="btn btn-success" type="submit" style="padding: 6px 12px 6px 12px">submit</button>
+								</div>
+							</c:if>
+							<c:if test="${empty sessionScope.loginMember }">
+								<input type="text" name="bContent" class="form-control" placeholder="로그인을 하시면 Comment를 남길 수 있습니다." disabled="disabled">
+								<div class="input-group-append">
+									<button class="btn btn-success" type="submit" style="padding: 6px 12px 6px 12px" disabled="disabled">submit</button>
+								</div>
+							</c:if>
+						
 						</div>
 					</form>
 				</div>
@@ -110,15 +133,19 @@
 		</div>
 	</div>
 	
+	<hr>
 	<!-- Footer -->
 	<jsp:include page="common/footer.jsp"/>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="../../resources/vendor/jquery/jquery.min.js"></script>
-  <script src="../../resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Custom scripts for this template -->
-  <script src="../../resources/js/clean-blog.min.js"></script>
+	
+	<script>
+		$(function(){
+			$("#list-area td").mouseenter(function(){
+				$(this).parent().css({"background":"#dcedff","cursor":"pointer"});
+			}).mouseout(function(){
+				$(this).parent().css({"background":"white"})
+			})
+		});
+	</script>
 
 </body>
 </html>

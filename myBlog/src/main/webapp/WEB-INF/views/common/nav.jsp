@@ -60,9 +60,6 @@
 				<li class="nav-item">
 					<a class="nav-link" href="selectCommunityList.bo">Community</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="showContact.do">Contact</a>
-				</li>
 				<c:if test="${ empty sessionScope.loginMember }">
 					<li class="nav-item">
 						<a class="nav-link" href="showLoginForm.me">
