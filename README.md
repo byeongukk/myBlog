@@ -15,10 +15,12 @@ Library : jQuery / gmail <br>
 <ul>
   <li>회원가입
     <ul>
-      <li>암호화</li>
+      <li>스프링 시큐리티를 이용한 password 암호화</li>
+      <li>server-side 에서 validator를 이용한 유효성 검사</li>
+      <li>이메일 인증</li>
     </ul>
   </li>
-  
+ 
   <li>로그인/로그아웃</li>
   <li>코멘트</li>
 </ul>
