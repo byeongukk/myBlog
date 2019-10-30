@@ -23,4 +23,8 @@ Library : jQuery / gmail <br>
  
   <li>로그인/로그아웃</li>
   <li>코멘트</li>
+    <ul>
+      <li>코멘트 작성</li>
+      <li>페이징</li>
+    </ul>
 </ul>
