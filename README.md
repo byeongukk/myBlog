@@ -13,7 +13,12 @@ Library : jQuery / gmail <br>
 
 <h3>구현 기능</h3>
 <ul>
-  <li>회원가입</li>
+  <li>회원가입
+    <ul>
+      <li>암호화</li>
+    </ul>
+  </li>
+  
   <li>로그인/로그아웃</li>
   <li>코멘트</li>
 </ul>
