@@ -41,7 +41,9 @@ Library : jQuery / gmail <br>
   <li>
   <li>관리자 페이지
      <ul>
-       <li>로그인 이력관리</li>       
+       <li>로그인 이력관리</li>
+       <li>코멘트 관리</li>
+       <li>멤버 관리</li>
     </ul>
   </li>
  
