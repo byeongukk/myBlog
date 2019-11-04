@@ -20,13 +20,19 @@ Library : jQuery / gmail <br>
       <li>이메일 인증</li>
     </ul>
   </li>
- 
   <li>로그인/로그아웃</li>
   <li>코멘트</li>
     <ul>
       <li>코멘트 작성</li>
       <li>페이징</li>
     </ul>
+  <li>
+      관리자 페이지
+    <ul>
+      <li>방문 이력 조회</li>
+      <li>로그인 이력 조회</li>  
+    </ul>
+  </li>
 </ul>
 
 <hr>
@@ -41,7 +47,6 @@ Library : jQuery / gmail <br>
   <li>
   <li>관리자 페이지
      <ul>
-       <li>로그인 이력관리</li>
        <li>코멘트 관리</li>
        <li>멤버 관리</li>
     </ul>
