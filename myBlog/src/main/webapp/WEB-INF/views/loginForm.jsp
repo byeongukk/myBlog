@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
-<link href="../../resources/css/loginForm.css" rel="stylesheet">
+<link href="${ conextPath }/resources/css/loginForm.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -29,7 +29,6 @@
 				<label for="inputPassword" class="sr-only">Password</label> 
 				<input type="password" id="mPwd" name="mPwd" class="form-control" placeholder="Password" required>
 				<div align="right">
-					<a href="#">ID/PW 찾기</a>
 				</div>
 				<br>
 				<button id="btn-Yes" class="btn btn-primary btn-block" type="submit">로그인</button>

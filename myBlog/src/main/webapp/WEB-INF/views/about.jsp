@@ -20,7 +20,7 @@
 	<jsp:include page="common/nav.jsp"/>
 
 	<!-- Page Header -->
-	<header class="masthead" style="background-image: url('../../../resources/img/about-bg.jpg')">
+	<header class="masthead" style="background-image: url('${ conextPath }/resources/img/about-bg.jpg')">
 		<div class="overlay">
 		
 		</div>
@@ -58,7 +58,7 @@
 			</div>
 		</div>
 	</div>
-
+	<hr>
 	<!-- Footer -->
 	<jsp:include page="common/footer.jsp"/>
 

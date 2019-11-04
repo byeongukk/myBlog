@@ -14,7 +14,7 @@
 <jsp:include page="link.jsp"/>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
 <!-- CSS 파일 -->
-<link href="../../resources/css/project.css" rel="stylesheet">
+<link href="${ conextPath }/resources/css/project.css" rel="stylesheet">
 
 
 </head>
@@ -24,7 +24,7 @@
 	<jsp:include page="common/nav.jsp"/>
 
 	<!-- Page Header -->
-	<header class="masthead" style="background-image: url('../../../resources/img/project-bg.jpg')">
+	<header class="masthead" style="background-image: url('${ conextPath }/resources/img/project-bg.jpg')">
 		<div class="overlay">
 		
 		</div>
@@ -49,7 +49,7 @@
 						<!-- 프로젝트 썸네일 -->
 						<a href="https://github.com/sinsoyeon/nullLive" target="_blank">
 							<div class="project-thumbnail">
-								<img class="thumbnail" alt="github로 이동" src="../../../resources/img/project/nullLive_logo.PNG">
+								<img class="thumbnail" alt="github로 이동" src="${ conextPath }/resources/img/project/nullLive_logo.PNG">
 							</div>
 	
 						</a>
@@ -141,7 +141,7 @@
 						<!-- 프로젝트 썸네일 -->
 						<a href="https://github.com/byeongukk/shareThings" target="_blank">
 							<div class="project-thumbnail">
-								<img class="thumbnail" alt="github로 이동" src="../../../resources/img/project/shareThing_logo.PNG">
+								<img class="thumbnail" alt="github로 이동" src="${ conextPath }/resources/img/project/shareThing_logo.PNG">
 							</div>
 						</a>
 						<!-- 간략한 프로젝트 소개 -->

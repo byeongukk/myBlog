@@ -60,6 +60,11 @@
 				<li class="nav-item">
 					<a class="nav-link" href="selectCommunityList.bo">Community</a>
 				</li>
+				<c:if test="${ sessionScope.loginMember.mId eq 'admin' }">
+					<li class="nav-item">
+						<a class="nav-link" href="showAdminMain.ad">admin</a>
+					</li>
+				</c:if>
 				<c:if test="${ empty sessionScope.loginMember }">
 					<li class="nav-item">
 						<a class="nav-link" href="showLoginForm.me">

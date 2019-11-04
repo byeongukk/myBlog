@@ -20,11 +20,11 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.home.myblog.common.ClientUtils;
-import com.home.myblog.common.Tempkey;
 import com.home.myblog.member.exception.AlreadyExistingEmailException;
 import com.home.myblog.member.exception.AlreadyExistingIdException;
 import com.home.myblog.member.model.service.MemberService;
 import com.home.myblog.member.model.vo.JoinRequest;
+import com.home.myblog.member.model.vo.LoginRequest;
 import com.home.myblog.member.model.vo.Member;
 import com.home.myblog.member.validator.MemberJoinValidator;
 @SessionAttributes("loginMember")
@@ -39,14 +39,24 @@ public class MemberController {
 	private static final Log LOG = LogFactory.getLog( MemberController.class);
 	
 	@RequestMapping("login.me")
-	public String loginCheck(Member member,HttpServletRequest request,Model model, HttpSession session) {
+	public String loginCheck(Member member,LoginRequest loginReq, HttpServletRequest request,Model model, HttpSession session) {
 		
 		System.out.println(ClientUtils.getRemoteIP(request));
+		//로그인 시도 ip
+		loginReq.setClIp(ClientUtils.getRemoteIP(request));
+		//로그인 시도 id
+		loginReq.setMllMid(member.getmId().toLowerCase());
+		//user agent
+		loginReq.setClUserAgent(request.getHeader("User-Agent"));
+		//요청 URL
+		loginReq.setClURL(request.getRequestURL().toString());
+		
+		System.out.println(loginReq);
 		Member loginMember;
 		// id는 소문자로만 검사
 		member.setmId(member.getmId().toLowerCase());
 		try {
-			loginMember = ms.loginMember(member);
+			loginMember = ms.loginMember(member,loginReq);
 			model.addAttribute("loginMember", loginMember);
 			//session.setAttribute("loginMember", loginMember);
 			return "redirect:index.jsp";

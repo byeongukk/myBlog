@@ -10,9 +10,9 @@
 <title>community</title>
 <jsp:include page="link.jsp"/>
 <!-- CSS 파일 -->
-<link href="../../resources/css/community.css" rel="stylesheet">
+<link href="${ conextPath }/resources/css/community.css" rel="stylesheet">
 <!-- paging -->
-<script src="../../resources/js/paging.js"></script>
+<script src="${ conextPath }/resources/js/paging.js"></script>
 <style>
 </style>
 </head>
@@ -21,7 +21,7 @@
 	<jsp:include page="common/nav.jsp"/>
 
 	<!-- Page Header -->
-	<header class="masthead" style="background-image: url('../../../resources/img/community-bg.jpg')">
+	<header class="masthead" style="background-image: url('${ conextPath }/resources/img/community-bg.jpg')">
 		<div class="overlay">
 		
 		</div>

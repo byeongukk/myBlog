@@ -1,0 +1,45 @@
+[16:43:48][WARN ](AbstractApplicationContext.java:557) - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [org.springframework.http.converter.json.MappingJacksonHttpMessageConverter] for bean with name 'jacksonMessageConverter' defined in class path resource [root-context.xml]; nested exception is java.lang.ClassNotFoundException: org.springframework.http.converter.json.MappingJacksonHttpMessageConverter
+[16:43:48][ERROR](ContextLoader.java:312) - Context initialization failed
+org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [org.springframework.http.converter.json.MappingJacksonHttpMessageConverter] for bean with name 'jacksonMessageConverter' defined in class path resource [root-context.xml]; nested exception is java.lang.ClassNotFoundException: org.springframework.http.converter.json.MappingJacksonHttpMessageConverter
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1392)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineTargetType(AbstractAutowireCapableBeanFactory.java:680)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:647)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1518)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1023)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:829)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:400)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:291)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:103)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4817)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5283)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1423)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1413)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.ClassNotFoundException: org.springframework.http.converter.json.MappingJacksonHttpMessageConverter
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1364)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1185)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:275)
+	at org.springframework.beans.factory.support.AbstractBeanDefinition.resolveBeanClass(AbstractBeanDefinition.java:437)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doResolveBeanClass(AbstractBeanFactory.java:1457)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1384)
+	... 19 more
+[19:28:39][WARN ](AbstractHandlerExceptionResolver.java:197) - Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: Illegal pattern character 'I'; nested exception is com.fasterxml.jackson.databind.JsonMappingException: Illegal pattern character 'I' (through reference chain: java.util.HashMap["loginList"]->java.util.ArrayList[0]->com.home.myblog.member.model.vo.LoginRequest["clDateTime"])]
+[19:28:42][WARN ](AbstractHandlerExceptionResolver.java:197) - Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: Illegal pattern character 'I'; nested exception is com.fasterxml.jackson.databind.JsonMappingException: Illegal pattern character 'I' (through reference chain: java.util.HashMap["loginList"]->java.util.ArrayList[0]->com.home.myblog.member.model.vo.LoginRequest["clDateTime"])]
+[19:28:53][WARN ](AbstractHandlerExceptionResolver.java:197) - Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: Illegal pattern character 'I'; nested exception is com.fasterxml.jackson.databind.JsonMappingException: Illegal pattern character 'I' (through reference chain: java.util.HashMap["loginList"]->java.util.ArrayList[0]->com.home.myblog.member.model.vo.LoginRequest["clDateTime"])]
+[19:31:45][WARN ](BCryptPasswordEncoder.java:85) - Empty encoded password
+[19:34:00][WARN ](BCryptPasswordEncoder.java:85) - Empty encoded password
+[19:36:32][WARN ](BCryptPasswordEncoder.java:85) - Empty encoded password
+[19:36:35][WARN ](BCryptPasswordEncoder.java:85) - Empty encoded password
+[19:36:37][WARN ](BCryptPasswordEncoder.java:85) - Empty encoded password
+[19:36:41][WARN ](BCryptPasswordEncoder.java:85) - Empty encoded password
+[19:36:45][WARN ](BCryptPasswordEncoder.java:85) - Empty encoded password
+[19:39:12][WARN ](BCryptPasswordEncoder.java:85) - Empty encoded password
+[19:41:48][WARN ](BCryptPasswordEncoder.java:85) - Empty encoded password

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.home.myblog.member.exception.AlreadyExistingEmailException;
 import com.home.myblog.member.exception.AlreadyExistingIdException;
 import com.home.myblog.member.model.vo.JoinRequest;
+import com.home.myblog.member.model.vo.LoginRequest;
 import com.home.myblog.member.model.vo.Member;
 
 @Repository
@@ -59,6 +60,30 @@ public class MemberDaoImpl implements MemberDao{
 		if(!(result == null)) {
 			throw new AlreadyExistingEmailException("이미 사용중인 이메일 입니다.");
 		}
+	}
+
+	//로그인 성공시
+	@Override
+	public void insertLoginSuccessLog(SqlSessionTemplate sqlSession, LoginRequest loginReq) {
+		sqlSession.insert("Member.insertLoginSuccessLog",loginReq);
+	}
+
+	//로그인 실패시
+	@Override
+	public void insertLoginFailLog(SqlSessionTemplate sqlSession, LoginRequest loginReq) {
+		sqlSession.insert("Member.insertLoginFailLog",loginReq);
+	}
+
+	//mId 로 mNo 조회
+	@Override
+	public int selectMno(SqlSessionTemplate sqlSession, String mId) {
+		int result = 0;
+		if(sqlSession.selectOne("Member.selectMno",mId) == null) {
+			result = 0;
+		}else {
+			result = sqlSession.selectOne("Member.selectMno",mId);
+		}
+		return result;
 	}
 
 

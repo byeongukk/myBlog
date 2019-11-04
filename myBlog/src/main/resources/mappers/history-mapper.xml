@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="History">
+    <resultMap type="com.home.myblog.history.model.vo.VisitCount" id="VisitLogResultSet">
+  		<id property="visitId" column="VISIT_ID"/>
+  		<result property="clDateTime" column="VISIT_TIME"/>
+  		<result property="clIp" column="VISIT_IP"/>
+  		<result property="clUserAgent" column="VISIT_AGENT"/>
+  		<result property="referer" column="VISIT_REFERER"/>
+  	</resultMap>
+  
+  
+	<insert id="insertVisitor" parameterType="VisitCount">
+		INSERT
+        INTO VISITOR
+        (
+            VISIT_ID,
+            VISIT_IP,
+            VISIT_TIME,
+            <if test="referer != null and referer !=''">
+            VISIT_REFER,
+            </if>
+            VISIT_AGENT
+        )
+        VALUES
+        (
+           	SEQ_VISITID.NEXTVAL,
+            #{clIp},
+            SYSDATE,
+            <if test="referer != null and referer !=''">
+            #{referer},
+            </if>
+            #{clUserAgent}
+        )
+	</insert>
+	
+	
+	<select id="selectVisitLogList" resultMap="VisitLogResultSet">
+		SELECT * FROM VISITOR
+		ORDER BY VISIT_ID DESC
+	</select>
+	
+	<select id="getVisitTodayCount" resultType="int">
+		SELECT COUNT(*) FROM VISITOR
+		WHERE TO_CHAR(VISIT_TIME,'YYYY-MM-DD') = TO_CHAR(SYSDATE,'YYYY-MM-DD')
+	</select>
+	
+	<select id="getVisitTotalCount" resultType="int">
+		SELECT COUNT(*) FROM VISITOR
+	</select>
+	
+</mapper>

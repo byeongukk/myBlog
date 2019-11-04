@@ -20,6 +20,7 @@
 		WHERE MID = #{mId}
 		AND MPWD = #{mPwd}
 		AND M_STATUS = 'Y'
+		
 	</select>
 	
 	<select id="duplicationCheckId" resultType="String" parameterType="String">
@@ -37,6 +38,12 @@
 		SELECT MPWD
 			FROM MEMBER
 		WHERE MID = #{mId}
+	</select>
+	
+	<select id="selectMno" resultType="int" parameterType="String">
+		SELECT MNO
+			FROM MEMBER
+		WHERE MID =#{mId}
 	</select>
 	
 	<update id="updateEmailConfirm" parameterType="String">
@@ -59,5 +66,50 @@
 			FROM MEMBER
 		WHERE EMAIL = #{email}
 	</select>
+	
+	<!-- 로그인 성공시 log insert -->
+	<insert id="insertLoginSuccessLog" parameterType="LoginRequest">
+		INSERT INTO MEMBER_LOGIN_LOG(MLL_ID, MLL_SUCCESS, MNO, MLL_MID, MLL_DATETIME, MLL_IP, MLL_USERAGENT, MLL_URL)
+				VALUES(SEQ_MLL.NEXTVAL, 'Y', #{mNo}, #{mllMid}, sysdate, #{clIp}, #{clUserAgent}, #{clURL})
+	</insert>
+	
+	<!-- 로그인 실패시 log insert -->
+	<insert id="insertLoginFailLog" parameterType="LoginRequest">
+		INSERT INTO 
+		MEMBER_LOGIN_LOG
+		(
+		MLL_ID,
+		MLL_SUCCESS,
+		<!-- mno가 있을경우 입력 -->
+		<if test="mNo != 0">
+			MNO, 
+		</if>
+		MLL_MID, 
+		MLL_DATETIME, 
+		MLL_IP,
+		MLL_REASON, 
+		MLL_USERAGENT, 
+		MLL_URL
+		)
+		
+		VALUES
+		(
+		SEQ_MLL.NEXTVAL, 
+		'N', 
+		<!-- mno가 있을경우 입력 -->
+		<if test="mNo != 0">
+			#{mNo}, 
+		</if>
+		#{mllMid}, 
+		sysdate, 
+		#{clIp},
+		#{mllReason},
+		#{clUserAgent}, 
+		#{clURL}
+		)
+	</insert>
+	
+	
+	
 
 </mapper>
