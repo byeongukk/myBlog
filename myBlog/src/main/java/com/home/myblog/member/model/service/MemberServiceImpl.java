@@ -23,6 +23,7 @@ import com.home.myblog.member.exception.AlreadyExistingIdException;
 import com.home.myblog.member.exception.EmailConfirmException;
 import com.home.myblog.member.model.dao.MemberDao;
 import com.home.myblog.member.model.vo.JoinRequest;
+import com.home.myblog.member.model.vo.LoginRequest;
 import com.home.myblog.member.model.vo.Member;
 
 @Service
@@ -44,25 +45,43 @@ public class MemberServiceImpl implements MemberService{
 	
 	
 	@Override
-	public Member loginMember(Member member) throws LoginException {
+	public Member loginMember(Member member,LoginRequest loginReq) throws LoginException {
 		
 		Member loginMember = null;
+		//mid 로 mno 조회
+		int mNo = md.selectMno(sqlSession, member.getmId());
+		
+		if(mNo >= 0) {
+			//id가 있을경우 log를 남기기 위함
+			loginReq.setmNo(mNo);
+		}
 		
 		String encPassword = md.selectEncPassword(sqlSession, member);
 		if(!passwordEncoder.matches(member.getmPwd(), encPassword)) {
+			if(mNo > 0) {
+				loginReq.setMllReason("비밀번호 불일치");
+			}else {
+				loginReq.setMllReason("아이디 없음");
+			}
+			md.insertLoginFailLog(sqlSession, loginReq);
 			throw new LoginException("아이디 혹은 비밀번호가 틀렸습니다");
 		}else {
 			member.setmPwd(encPassword);
 			loginMember = md.loginMember(sqlSession, member);
 		}
 		
+		
+			
+		
 		//이메일 인증 여부 체크
 		if(loginMember.geteCheck().equals("N") || loginMember.geteCheck() == null) {
+			loginReq.setMllReason("이메일 미인증");
+			md.insertLoginFailLog(sqlSession, loginReq);
 			throw new LoginException("이메일 인증이 되지 않았습니다.이메일 인증후 다시 시도해주세요.");
 		}
 		
-		LOG.info(new Date() + " : $"+ loginMember.getmId()+"$님이 로그인 했습니다..");
-	
+		//로그인 성공 log 남기기
+		md.insertLoginSuccessLog(sqlSession, loginReq);
 		
 		return loginMember;
 	}

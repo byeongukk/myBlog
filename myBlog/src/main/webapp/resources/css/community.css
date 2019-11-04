@@ -1,9 +1,5 @@
 @charset "UTF-8";
 
-.community-list{
-	margin-bottom: 2em;
-	box-shadow: 0 2px 4px rgba(0,0,0,.2), 0 2px 4px rgba(0,0,0,.2);
-}
 .comment-insert{
 	margin-bottom: 5em;
 }
@@ -15,6 +11,6 @@
       overflow:hidden;
       text-overflow:ellipsis;
       white-space:nowrap;
-      
 	}
+	
 }

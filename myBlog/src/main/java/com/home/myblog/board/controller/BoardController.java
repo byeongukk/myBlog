@@ -36,8 +36,6 @@ public class BoardController {
 		
 		//페이징 겟수 조회
 		pi.setTotal(bs.getCommunityListCount(bCode));
-		System.out.println(pi.getStart());
-		System.out.println(pi.getLast());
 		model.addAttribute("list",list);
 		model.addAttribute("pi",pi);
 		return "community";

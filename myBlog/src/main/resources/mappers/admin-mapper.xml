@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="Admin">
+  	<resultMap type="com.home.myblog.member.model.vo.LoginRequest" id="LoginReqResultSet">
+  		<id property="mllId" column="MLL_ID"/>
+  		<result property="mllSuccess" column="MLL_SUCCESS"/>
+  		<result property="mNo" column="MNO"/>
+  		<result property="mllMid" column="MLL_MID"/>
+  		<result property="mllReason" column="MLL_REASON"/>
+  		<result property="clDateTime" column="MLL_DATETIME"/>
+  		<result property="clIp" column="MLL_IP"/>
+  		<result property="clUserAgent" column="MLL_USERAGENT"/>
+  		<result property="clURL" column="MLL_URL"/>
+  		<result property="referer" column="MLL_REFERER"/>
+  	</resultMap>
+
+
+	<select id="selectLoginLogList" resultMap="LoginReqResultSet" parameterType="java.util.HashMap">
+		SELECT * FROM MEMBER_LOGIN_LOG
+		ORDER BY MLL_ID DESC
+	</select>
+
+</mapper>

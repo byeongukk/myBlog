@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.home.myblog.member.exception.AlreadyExistingEmailException;
 import com.home.myblog.member.exception.AlreadyExistingIdException;
 import com.home.myblog.member.model.vo.JoinRequest;
+import com.home.myblog.member.model.vo.LoginRequest;
 import com.home.myblog.member.model.vo.Member;
 
 public interface MemberDao {
@@ -28,6 +29,12 @@ public interface MemberDao {
 	Member selectEmailCodeCheck(SqlSessionTemplate sqlSession, HashMap<String, Object> hmap);
 
 	void duplicationCheckEmail(SqlSessionTemplate sqlSession, String email) throws AlreadyExistingEmailException;
+
+	void insertLoginSuccessLog(SqlSessionTemplate sqlSession, LoginRequest loginReq);
+
+	void insertLoginFailLog(SqlSessionTemplate sqlSession, LoginRequest loginReq);
+
+	int selectMno(SqlSessionTemplate sqlSession, String mId);
 
 
 }

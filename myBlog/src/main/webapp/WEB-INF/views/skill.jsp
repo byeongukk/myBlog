@@ -28,6 +28,18 @@
 	    margin-bottom: 2rem;
 	    box-shadow: 0 3px 6px rgba(0,0,0,.2), 0 3px 6px rgba(0,0,0,.2);
 	}
+	
+	@media only screen and (max-width: 768px) {
+		.skill_imgBox {
+			width: 74px;
+	  		height: 76px;
+	  		border-radius: 12px 12px;
+	  		margin-right: 1rem;
+	   		margin-left: 1rem;
+	    	margin-bottom: 1rem;
+		}
+	}
+
 
 </style>
 
@@ -36,7 +48,7 @@
 	<jsp:include page="common/nav.jsp"/>
 
 	<!-- Page Header -->
-	<header class="masthead" style="background-image: url('../../../resources/img/skill-bg.jpg')">
+	<header class="masthead" style="background-image: url('${ conextPath }/resources/img/skill-bg.jpg')">
 		<div class="overlay">
 		
 		</div>
@@ -56,27 +68,27 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-md-10 mx-auto">
-				<span class="skill_imgBox" style="background-image: url('../../resources/img/skill/java.png')">				
+				<span class="skill_imgBox" style="background-image: url('${ conextPath }/resources/img/skill/java.png')">				
 				</span>
-				<span class="skill_imgBox" style="background-image: url('../../resources/img/skill/html5.png">
+				<span class="skill_imgBox" style="background-image: url('${ conextPath }/resources/img/skill/html5.png">
 				</span>
-				<span class="skill_imgBox" style="background-image: url('../../resources/img/skill/css-3.png"> 
+				<span class="skill_imgBox" style="background-image: url('${ conextPath }/resources/img/skill/css-3.png"> 
 				</span>
-				<span class="skill_imgBox" style="background-image: url('../../resources/img/skill/js.png">
+				<span class="skill_imgBox" style="background-image: url('${ conextPath }/resources/img/skill/js.png">
 				</span>
-				<span class="skill_imgBox" style="background-image: url('../../resources/img/skill/jquery.png">
+				<span class="skill_imgBox" style="background-image: url('${ conextPath }/resources/img/skill/jquery.png">
 				</span>
-				<span class="skill_imgBox" style="background-image: url('../../resources/img/skill/mybatis.png">
+				<span class="skill_imgBox" style="background-image: url('${ conextPath }/resources/img/skill/mybatis.png">
 				</span>
-				<span class="skill_imgBox" style="background-image: url('../../resources/img/skill/spring.png">
+				<span class="skill_imgBox" style="background-image: url('${ conextPath }/resources/img/skill/spring.png">
 				</span>
-				<span class="skill_imgBox" style="background-image: url('../../resources/img/skill/oracle.jpg">
+				<span class="skill_imgBox" style="background-image: url('${ conextPath }/resources/img/skill/oracle.jpg">
 				</span>
-				<span class="skill_imgBox" style="background-image: url('../../resources/img/skill/react.png">
+				<span class="skill_imgBox" style="background-image: url('${ conextPath }/resources/img/skill/react.png">
 				</span>
-				<span class="skill_imgBox" style="background-image: url('../../resources/img/skill/git.png">
+				<span class="skill_imgBox" style="background-image: url('${ conextPath }/resources/img/skill/git.png">
 				</span>
-				<span class="skill_imgBox" style="background-image: url('../../resources/img/skill/aws.png">
+				<span class="skill_imgBox" style="background-image: url('${ conextPath }/resources/img/skill/aws.png">
 				</span>
 			</div>
 		</div>

@@ -9,11 +9,12 @@ import com.home.myblog.member.exception.AlreadyExistingEmailException;
 import com.home.myblog.member.exception.AlreadyExistingIdException;
 import com.home.myblog.member.exception.EmailConfirmException;
 import com.home.myblog.member.model.vo.JoinRequest;
+import com.home.myblog.member.model.vo.LoginRequest;
 import com.home.myblog.member.model.vo.Member;
 
 public interface MemberService {
 
-	Member loginMember(Member member) throws LoginException;
+	Member loginMember(Member member, LoginRequest loginReq) throws LoginException;
 
 	void duplicationCheckId(String mId) throws AlreadyExistingIdException;
 
@@ -24,5 +25,6 @@ public interface MemberService {
 	void emailConfirm(String mid, String authkey) throws EmailConfirmException;
 
 	void duplicationCheckEmail(String email) throws AlreadyExistingEmailException;
+
 
 }
