@@ -31,6 +31,8 @@ import com.home.myblog.member.validator.MemberJoinValidator;
 @Controller
 public class MemberController {
 	
+	public final static String EMAIL_COMFIRM_SUCCESS = "이메일 인증이 완료되었습니다!\\n 회원가입한 아이디로 로그인 해주세요";	
+	
 	@Autowired
 	private MemberService ms;
 	@Autowired
@@ -41,7 +43,6 @@ public class MemberController {
 	@RequestMapping("login.me")
 	public String loginCheck(Member member,LoginRequest loginReq, HttpServletRequest request,Model model, HttpSession session) {
 		
-		System.out.println(ClientUtils.getRemoteIP(request));
 		//로그인 시도 ip
 		loginReq.setClIp(ClientUtils.getRemoteIP(request));
 		//로그인 시도 id
@@ -51,14 +52,12 @@ public class MemberController {
 		//요청 URL
 		loginReq.setClURL(request.getRequestURL().toString());
 		
-		System.out.println(loginReq);
 		Member loginMember;
 		// id는 소문자로만 검사
 		member.setmId(member.getmId().toLowerCase());
 		try {
 			loginMember = ms.loginMember(member,loginReq);
 			model.addAttribute("loginMember", loginMember);
-			//session.setAttribute("loginMember", loginMember);
 			return "redirect:index.jsp";
 		} catch (LoginException e) {
 			request.setAttribute("msg",e.getMessage());
@@ -74,7 +73,6 @@ public class MemberController {
 	
 	@RequestMapping("showJoinForm.me")
 	public String showJoinForm(Model model,JoinRequest joinReq) {
-		System.out.println(joinReq);
 		model.addAttribute("joinReq",joinReq);
 		return "joinForm";
 	}
@@ -133,9 +131,14 @@ public class MemberController {
 			e2.printStackTrace();
 		}
 		
-		model.addAttribute("msg","회원가입 성공");
-		return "redirect:index.jsp";
+		return "redirect:showRedirectAlert.me";
 	}
+	
+	@RequestMapping("showRedirectAlert.me")
+	public String showRedirectAlert(String msg) {
+		return "joinConfirm";
+	}
+		
 	
 	@RequestMapping("duplicationCheck.me")
 	public String duplicationCheck(String mId,ModelAndView mv, JoinRequest joinReq, Errors errors) {
@@ -148,13 +151,13 @@ public class MemberController {
 			
 		return "joinForm";
 	}
-		
+
 	
 	@RequestMapping("emailConfirm.me") 
 	public String emailConfirm(Model model, HttpServletRequest request, String mId, String authkey) { 
 		try {
 			ms.emailConfirm(mId.toLowerCase(),authkey);
-			model.addAttribute("msg", "이메일 인증이 완료되었습니다!\\n 회원가입한 아이디로 로그인 해주세요");
+			model.addAttribute("msg", EMAIL_COMFIRM_SUCCESS);
 			return "common/alert"; 
 		} catch(Exception e) {
 			model.addAttribute("msg", e.getMessage()); 

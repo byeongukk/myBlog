@@ -59,12 +59,12 @@ public class MemberServiceImpl implements MemberService{
 		String encPassword = md.selectEncPassword(sqlSession, member);
 		if(!passwordEncoder.matches(member.getmPwd(), encPassword)) {
 			if(mNo > 0) {
-				loginReq.setMllReason("비밀번호 불일치");
+				loginReq.setMllReason(PWD_NO_MATCH);
 			}else {
-				loginReq.setMllReason("아이디 없음");
+				loginReq.setMllReason(NO_ID);
 			}
 			md.insertLoginFailLog(sqlSession, loginReq);
-			throw new LoginException("아이디 혹은 비밀번호가 틀렸습니다");
+			throw new LoginException(ID_OR_PWD_ERR_MSG);
 		}else {
 			member.setmPwd(encPassword);
 			loginMember = md.loginMember(sqlSession, member);
@@ -75,9 +75,9 @@ public class MemberServiceImpl implements MemberService{
 		
 		//이메일 인증 여부 체크
 		if(loginMember.geteCheck().equals("N") || loginMember.geteCheck() == null) {
-			loginReq.setMllReason("이메일 미인증");
+			loginReq.setMllReason(EMAIL_UNCERTIFIED);
 			md.insertLoginFailLog(sqlSession, loginReq);
-			throw new LoginException("이메일 인증이 되지 않았습니다.이메일 인증후 다시 시도해주세요.");
+			throw new LoginException(EMAIL_UNCERTIFIED_MSG);
 		}
 		
 		//로그인 성공 log 남기기
@@ -94,7 +94,6 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void joinMember(JoinRequest joinReq) {
 		int result = md.joinMember(sqlSession, joinReq);
-		LOG.info(new Date() + " : $"+ joinReq.getmId()+"$님이 회원가입 했습니다.");
 	}
 
 	@Override
@@ -109,7 +108,7 @@ public class MemberServiceImpl implements MemberService{
 		sendMail.setSubject("[uk's blog] / 회원가입 이메일 인증");
 		sendMail.setText(new StringBuffer().append("<h1>[uk's blog에 어서오세요!]</h1>")
 				.append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
-				.append("<a href='http://localhost:8001/emailConfirm.me?mId=")
+				.append("<a href='http://13.125.224.95:8080/myBlog/emailConfirm.me?mId=")
 				.append(joinReq.getmId())
 				.append("&email=")
 				.append(joinReq.getEmail())
@@ -134,11 +133,11 @@ public class MemberServiceImpl implements MemberService{
 		if(member != null) {
 			result = md.updateEmailConfirm(sqlSession, mid);
 		}else {
-			throw new EmailConfirmException("잘못된 요청입니다");
+			throw new EmailConfirmException(INVALID_REQUEST);
 		}
 		
 		if(result <= 0 ) {
-			throw new EmailConfirmException("이미 인증되었습니다.");
+			throw new EmailConfirmException(ALREADY_CERTIFIED);
 		}
 	}
 

@@ -84,11 +84,7 @@
 				</span>
 				<span class="skill_imgBox" style="background-image: url('${ conextPath }/resources/img/skill/oracle.jpg">
 				</span>
-				<span class="skill_imgBox" style="background-image: url('${ conextPath }/resources/img/skill/react.png">
-				</span>
 				<span class="skill_imgBox" style="background-image: url('${ conextPath }/resources/img/skill/git.png">
-				</span>
-				<span class="skill_imgBox" style="background-image: url('${ conextPath }/resources/img/skill/aws.png">
 				</span>
 			</div>
 		</div>

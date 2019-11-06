@@ -61,27 +61,31 @@
 							</span>
 						</a>
 						<div class="project-brief">
-							<h2>NullLive</h2>
+							<h2 class="project-title" id="project-title">Null Live</h2>
 							<hr>
 							<div class="project-sub">
 								<p>개요 : 누구나 쉽게 방송할 수 있는 플랫폼 구축</p>
 								<p>개발 기간 : 2019년 06월 20일 ~ 2019년 07월 17일 </p>
 							</div>
-							<div>
-								<p class="project-sub"> 전체 구현 기능 </p>
+							<div id="full-impl">
+								<p class="project-sub">전체 구현 기능</p>
 								<span class="project-fn">로그인</span>
 								<span class="project-fn">회원가입</span>
 								<span class="project-fn">아이디 비밀번호 찾기</span>
-								<span class="project-fn">실시간 방송</span>
-								<span class="project-fn">방송 시청</span>
-								<span class="project-fn">실시간 채팅</span>
-								<span class="project-fn">구인구직 게시판</span>
-								<span class="project-fn">후원하기 / 결제</span>
-								<span class="project-fn">스트리머 관리</span>
+								<span class="project-fn">물품 등록</span>
+								<span class="project-fn">물품 대여 후기</span>
+								<span class="project-fn">QnA</span>
+								<span class="project-fn">회원 조회</span>
 								<span class="project-fn">회원 관리</span>
+								<span class="project-fn">등록 관리</span>
+								<span class="project-fn">등록 물품 관리</span>
+								<span class="project-fn">대여 조회</span>
+								<span class="project-fn">대여 관리</span>
+								<span class="project-fn">물품 발송 관리</span>
+								<span class="project-fn">배송 조회</span>
+								<span class="project-fn">게시글 관리</span>
 								<span class="project-fn">정산 및 환불</span>
 								<span class="project-fn">통계</span>
-								<span class="project-fn">게시판 관리</span>
 							</div>
 							<div>
 								<p class="project-sub">담당 구현 기능</p>
@@ -152,13 +156,13 @@
 							</span>
 						</a>
 						<div class="project-brief">
-							<h2 class="project-title">shareThings</h2>
+							<h2 class="project-title">Share Things</h2>
 							<hr>
 							<div class="project-sub">
 								<p>개요 : 이용자간의 안전하게 물건을 빌리고 빌려주기위한 사이트 구축</p>
 								<p>개발 기간 : 2019년 05월 10일 ~ 2019년 05월 27일 </p>
 							</div>
-							<div>
+							<div >
 								<p class="project-sub">전체 구현 기능</p>
 								<span class="project-fn">로그인</span>
 								<span class="project-fn">회원가입</span>
@@ -190,7 +194,7 @@
 								<table class="table table-bordered">
 									<tbody>
 										<tr>
-											<td>OS</td>
+											<td><b>OS</b></td>
 											<td>Windows 10</td>
 										</tr>
 										<tr>
@@ -241,7 +245,25 @@
 	<hr>
 	<!-- Footer -->
 	<jsp:include page="common/footer.jsp"/>
-
+<!-- 	<script>
+		$(document).ready(function(){
+			$.ajax({
+				type:"post",
+				url:"${ conextPath }/resources/project.json",
+				dataType:"text",
+				success:function(data){
+					var project = JSON.parse(data);
+					
+					$.each(project.fullImpl, function(index,item){
+						$("#full-impl").append("<span class='project-fn'>"+item+"</span>");
+					})
+					$("#project-title").text(project.projectName)
+					
+					
+				}
+			})
+		})
+	</script> -->
 </body>
 
 </html>

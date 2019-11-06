@@ -7,6 +7,12 @@
 <meta charset="UTF-8">
 </head>
 <body>
-	<jsp:include page="common/ad-nav.jsp"/>
+	<div id="wrapper">
+		<jsp:include page="common/ad-nav.jsp"/>
+		<div id="content">
+			<h2>admin page 구현중..</h2>
+		</div>
+	</div>
+	
 </body>
 </html>

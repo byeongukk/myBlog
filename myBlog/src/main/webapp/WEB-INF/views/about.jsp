@@ -12,9 +12,8 @@
   <title>MyBlog</title>
 	<!-- import link -->	
 	<jsp:include page="link.jsp"/>
-
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
 </head>
-
 <body>
 	<!-- navigator -->
 	<jsp:include page="common/nav.jsp"/>
@@ -40,25 +39,18 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-md-10 mx-auto">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-					Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea
-					nobis sit soluta odio, adipisci quas excepturi maxime quae totam
-					ducimus consectetur?
-				</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-					Eius praesentium recusandae illo eaque architecto error,
-					repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at
-					quae voluptatum in officia voluptas voluptatibus, minus!
-				</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut
-					consequuntur magnam, excepturi aliquid ex itaque esse est vero
-					natus quae optio aperiam soluta voluptatibus corporis atque iste
-					neque sit tempora!
+				<h3 style="font-family: 'Noto Serif KR', serif;">발전하는 개발자</h3>
+				<h5 style="font-family: 'Noto Serif KR', serif;">저는 잘하는 개발자를 지향하고있습니다.</h5>
+				<p style="font-family: 'Noto Serif KR', serif;">
+				개발자의 역량은 다양한 경험과 끊임없는 자기계발에서 나온다고 생각합니다. 
+				다양한 시도로 경험을 쌓으며,새로운 기술등 변화를 두려워하지 않고 즐기며 노력하는 개발자로
+				잘하는 개발자가 되고싶습니다.	
 				</p>
 			</div>
 		</div>
 	</div>
 	<hr>
+
 	<!-- Footer -->
 	<jsp:include page="common/footer.jsp"/>
 
